@@ -9,11 +9,10 @@ const Builder = () => {
         <div >
             <div className={classes.builder}>
                 <h3>Build your own Ice Cream</h3>
-                {/*// <!-- items start -->*/}
                 <Items/>
                 <TotalPrice/>
 
-                <button type="button"  className={[classes.order, 'rounded'].join()}>
+                <button type="button"  className={[classes.order, 'rounded'].join(' ')}>
                     Add to Cart
                 </button>
             </div>
