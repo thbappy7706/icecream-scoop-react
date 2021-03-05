@@ -5,13 +5,15 @@ import Builder from "../../Components/Builder/Builder";
 
 class IceCreamBuilder extends Component {
     state={
-        items:{
-            vanilla:45,
-            chocolate:50,
-            orange:30,
-            lemon:25,
-            strawberry:55,
-        },
+        // items:{
+        //     vanilla:45,
+        //     chocolate:50,
+        //     orange:30,
+        //     lemon:25,
+        //     strawberry:55,
+        // },
+
+        items:{},
         scoops:[],
         totalPrice:0,
     };
@@ -29,6 +31,19 @@ class IceCreamBuilder extends Component {
             };
         });
     };
+
+    componentDidMount() {
+            fetch('https://icecream-3b162-default-rtdb.firebaseio.com/items.json').then(
+                (response)=>response.json()).then((responseData)=>{
+                   this.setState({
+                       items:responseData
+                   });
+            });
+    }
+
+    componentDidUpdate( ) {
+        console.log("fwef");
+    }
 
 
 //delete
@@ -55,13 +70,7 @@ class IceCreamBuilder extends Component {
         return (
             <div className={['container', classes.container].join(' ')}>
                 <Icecream scoops={scoops} />
-                <Builder
-                    items={items}
-                    price={totalPrice}
-                    add={this.addScoop}
-                    remove={this.removeScoop}
-                    scoops={scoops}
-                />
+                <Builder items={items} price={totalPrice} add={this.addScoop} remove={this.removeScoop} scoops={scoops}/>
             </div>
         );
     }
